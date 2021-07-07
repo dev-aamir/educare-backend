@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: educareDB
 -- ------------------------------------------------------
--- Server version	8.0.11
+-- Server version 8.0.11
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,6 +42,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
+INSERT INTO `course` VALUES (1,'English','SSC English Course',1000,NULL,10,1,1,1),(2,'Maths','SSC Maths Course',1000,NULL,10,1,2,1),(3,'Science','SSC Science Course',1000,NULL,10,1,3,1),(4,'Physics','HSC Course of Physics',2000,NULL,12,2,4,1),(5,'Chemistry','HSC Course of Chemistry',2000,NULL,12,2,5,1),(6,'Biology','HSC',2000,NULL,12,2,6,1);
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,6 +71,7 @@ CREATE TABLE `playlist` (
 
 LOCK TABLES `playlist` WRITE;
 /*!40000 ALTER TABLE `playlist` DISABLE KEYS */;
+INSERT INTO `playlist` VALUES (1,1,NULL,NULL,'SSC English L1','Lecture 1',1),(2,1,NULL,NULL,'SSC English L2','Lecture 2',1);
 /*!40000 ALTER TABLE `playlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +87,7 @@ CREATE TABLE `standard` (
   `std_year` varchar(45) DEFAULT NULL,
   `std_active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`std_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,6 +96,7 @@ CREATE TABLE `standard` (
 
 LOCK TABLES `standard` WRITE;
 /*!40000 ALTER TABLE `standard` DISABLE KEYS */;
+INSERT INTO `standard` VALUES (1,'10',1),(2,'12',1);
 /*!40000 ALTER TABLE `standard` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +123,7 @@ CREATE TABLE `student` (
   `stu_last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `stu_active` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`stu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,8 +132,35 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (1,'aamir','s','M','aamir@web.com','9988888899',28,12,'aamir','aamir123',0,'2021-07-06 09:06:51','2021-07-06 09:06:51',0);
+INSERT INTO `student` VALUES (1,'aamir','s','M','aamir@web.com','9988888899',28,12,'aamir','aamir123',0,'2021-07-06 09:06:51','2021-07-06 09:06:51',0),(2,'Ali','Mansuri','M','ali@gg.com','9877678909',0,10,'ali','ali1234',0,NULL,NULL,0);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `student_course_map`
+--
+
+DROP TABLE IF EXISTS `student_course_map`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `student_course_map` (
+  `scm_id` int(11) NOT NULL AUTO_INCREMENT,
+  `scm_stu_id` int(11) NOT NULL,
+  `scm_course_id` int(11) NOT NULL,
+  `scm_crtd_tmstmp` timestamp NULL DEFAULT NULL,
+  `scm_active` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`scm_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `student_course_map`
+--
+
+LOCK TABLES `student_course_map` WRITE;
+/*!40000 ALTER TABLE `student_course_map` DISABLE KEYS */;
+INSERT INTO `student_course_map` VALUES (1,1,1,NULL,1),(2,1,2,NULL,1);
+/*!40000 ALTER TABLE `student_course_map` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -142,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-06 14:56:27
+-- Dump completed on 2021-07-07  8:54:12
