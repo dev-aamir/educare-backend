@@ -28,7 +28,8 @@ public class StudentServiceImpl implements StudentService {
 		if(!validatorResponse.isEmpty()) {
 			s.setValidationResponse(validatorResponse);
 		}else {
-			return studentRepo.save(s);
+			Student student = studentRepo.save(s);
+			return student;
 		}
 		
 		return null;
