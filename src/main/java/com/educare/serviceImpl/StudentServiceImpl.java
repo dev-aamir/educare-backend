@@ -1,5 +1,6 @@
 package com.educare.serviceImpl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,11 @@ public class StudentServiceImpl implements StudentService {
 		}
 		
 		return null;
+	}
+
+	@Override
+	public List<Student> findAll() {
+		return studentRepo.findAll();
 	}
 
 }

@@ -14,57 +14,56 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="student")
+@Table(name = "student")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Student {
 
 	@Id
-	@Column(name="stu_id")
+	@Column(name = "stu_id")
 	private int studentId;
-	
-	@Column(name="stu_fname")
+
+	@Column(name = "stu_fname")
 	private String studentFirstName;
-	
-	@Column(name="stu_lname")
+
+	@Column(name = "stu_lname")
 	private String studentLastName;
-	
-	@Column(name="stu_gender")
+
+	@Column(name = "stu_gender")
 	private String studentGender;
-	
-	@Column(name="stu_email")
+
+	@Column(name = "stu_email")
 	private String studentEmail;
-	
-	@Column(name="stu_mobile")
+
+	@Column(name = "stu_mobile")
 	private String studentMobile;
-	
-	@Column(name="stu_age")
+
+	@Column(name = "stu_age")
 	private int studentAge;
-	
-	@Column(name="stu_standard")
+
+	@Column(name = "stu_standard")
 	private int studentStandard;
-	
-	@Column(name="stu_username")
+
+	@Column(name = "stu_username")
 	private String studentUsername;
-	
-	@Column(name="stu_password")
+
+	@Column(name = "stu_password")
 	private String studentPassword;
-	
-	@Column(name="stu_otp")
+
+	@Column(name = "stu_otp")
 	private int studentOtp;
-	
-	@Column(name="stu_crtd_tmstmp")
+
+	@Column(name = "stu_crtd_tmstmp")
 	private Timestamp studentCrtdTmstmp;
-	
-	@Column(name="stu_last_update")
+
+	@Column(name = "stu_last_update")
 	private Timestamp studentLastUpdateTmstmp;
-	
-	@Column(name="stu_active")
+
+	@Column(name = "stu_active")
 	private boolean studentActive;
-	
+
 	@Transient
-	private Map<String,String> validationResponse;
-	
-	
+	private Map<String, String> validationResponse;
+
 }
