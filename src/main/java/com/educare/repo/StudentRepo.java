@@ -9,5 +9,5 @@ import com.educare.model.Student;
 public interface StudentRepo extends JpaRepository<Student, Integer> {
 
 	Student findByStudentUsernameAndStudentPassword(String username, String password);
-	
+
 }
