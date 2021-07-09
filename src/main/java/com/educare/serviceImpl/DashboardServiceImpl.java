@@ -68,6 +68,18 @@ public class DashboardServiceImpl implements DashboardService {
 		return courseList;
 	
 	}
+
+	@Override
+	public List<Course> purchaseCourse(StudentCourseMap scm) {
+		
+		scmRepo.save(scm);
+		
+		Student s = new Student();
+		s.setStudentId(scm.getStudentId());
+		
+		return getCoursesPurchasedByStudent(s);
+		
+	}
 	
 	
 }
