@@ -16,10 +16,11 @@ public interface DashboardService {
 	List<Playlist> getPlaylistForCourse(Course course);
 	
 	List<Course> getCoursesPurchasedByStudent(Student student);
-	
+
 	Enquiry saveEnquiryData(Enquiry e);
 	
 	List<Course> purchaseCourse(StudentCourseMap scm);
 	
 	StudentCourseMap checkForPurchaseStatus(StudentCourseMap scm);
+
 }
