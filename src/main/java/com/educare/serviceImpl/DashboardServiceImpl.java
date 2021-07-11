@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.educare.model.Course;
+import com.educare.model.Enquiry;
 import com.educare.model.Playlist;
 import com.educare.model.Standard;
 import com.educare.model.Student;
 import com.educare.model.StudentCourseMap;
 import com.educare.repo.CourseRepo;
+import com.educare.repo.EnquiryRepo;
 import com.educare.repo.PlaylistRepo;
 import com.educare.repo.StudentCourseMapRepo;
 import com.educare.repo.StudentRepo;
@@ -36,6 +38,9 @@ public class DashboardServiceImpl implements DashboardService {
 	
 	@Autowired
 	StudentCourseMapRepo scmRepo;
+	
+	@Autowired
+	EnquiryRepo enquiryRepo;
 
 	@Override
 	public List<Course> getAllCoursesForDashboard(Standard std) {
@@ -68,6 +73,38 @@ public class DashboardServiceImpl implements DashboardService {
 		return courseList;
 	
 	}
+
+	@Override
+	public Enquiry saveEnquiryData(Enquiry e) {
+		Enquiry enq = enquiryRepo.save(e);
+		
+		if(enq != null) {
+			return enq;
+		}
+		
+		return null;
+	}
 	
-	
+	@Override
+	public List<Course> purchaseCourse(StudentCourseMap scm) {
+		
+		scmRepo.save(scm);
+		
+		Student s = new Student();
+		s.setStudentId(scm.getStudentId());
+		
+		return getCoursesPurchasedByStudent(s);
+		
+	}
+
+	@Override
+	public StudentCourseMap checkForPurchaseStatus(StudentCourseMap scm) {
+		
+		StudentCourseMap res = scmRepo.findByStudentIdAndCourseId(scm.getStudentId(),scm.getCourseId());
+		if(res != null) {
+			return res;
+		}
+		
+		return null;
+	}
 }
