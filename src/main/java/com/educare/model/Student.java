@@ -65,5 +65,11 @@ public class Student {
 
 	@Transient
 	private Map<String, String> validationResponse;
+	
+	@Transient
+	private String sessionKey;
+	
+	@Transient
+	private String message;
 
 }

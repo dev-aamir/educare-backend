@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.educare.model.DoubtBox;
 import com.educare.model.Student;
 import com.educare.service.StudentService;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/student")
 public class StudentController {
@@ -45,12 +46,36 @@ public class StudentController {
 		LOGGER.info("Login Reponse >>>>>>> {}",response);
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
+	
+	@PostMapping("/logout")
+	public ResponseEntity<String> logoutStudent(@RequestBody Student s){
+		
+		LOGGER.info("Logout Service Hit >>>>>>>");
+		studentService.logoutStudent(s);
+		
+		
+		return new ResponseEntity<>("logged out",HttpStatus.OK);
+	}
 
 	@GetMapping("/findall")
 	public ResponseEntity<List<Student>> findAllStudents() {
 
 		List<Student> students = studentService.findAll();
 		return new ResponseEntity<>(students, HttpStatus.OK);
+	}
+	
+	@PostMapping("/askDoubt")
+	public ResponseEntity<DoubtBox> askDoubt(@RequestBody DoubtBox db){
+		
+		DoubtBox response = studentService.saveDoubt(db);
+		return new ResponseEntity<>(response,HttpStatus.OK);
+	}
+	
+	@PostMapping("/getDoubts")
+	public ResponseEntity<List<DoubtBox>> getDoubts(@RequestBody Student s){
+		
+		List<DoubtBox> response = studentService.fetchAllDoubts(s);
+		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 
 }

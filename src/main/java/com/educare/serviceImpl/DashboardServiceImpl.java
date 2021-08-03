@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.educare.model.Course;
+import com.educare.model.CourseDetails;
 import com.educare.model.Enquiry;
 import com.educare.model.Playlist;
 import com.educare.model.Standard;
 import com.educare.model.Student;
 import com.educare.model.StudentCourseMap;
+import com.educare.repo.CourseDetailsRepo;
 import com.educare.repo.CourseRepo;
 import com.educare.repo.EnquiryRepo;
 import com.educare.repo.PlaylistRepo;
@@ -41,11 +43,17 @@ public class DashboardServiceImpl implements DashboardService {
 	
 	@Autowired
 	EnquiryRepo enquiryRepo;
+	
+	@Autowired
+	CourseDetailsRepo detailsRepo;
 
 	@Override
 	public List<Course> getAllCoursesForDashboard(Standard std) {
 		
 		int stdYear = Integer.parseInt(std.getStandardYear());
+		if(stdYear == 13) {
+			stdYear = 12;
+		}
 		return courseRepo.findAllByCourseStdId(stdYear);
 		
 	}
@@ -106,5 +114,17 @@ public class DashboardServiceImpl implements DashboardService {
 		}
 		
 		return null;
+	}
+
+	@Override
+	public List<CourseDetails> fetchCourseDetails(int courseId) {
+		
+		return detailsRepo.findAllByCdCourseId(courseId);
+	}
+
+	@Override
+	public List<Course> getAllCoursesForShowcase(Course c) {
+		String courseType = c.getCourseType();
+		return courseRepo.findAllByCourseType(courseType);
 	}
 }

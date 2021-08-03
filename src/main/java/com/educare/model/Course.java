@@ -44,6 +44,7 @@ public class Course {
 	@Column(name="c_active")
 	private boolean courseActive;
 	
-	
+	@Column(name="c_type")
+	private String courseType;
 	
 }

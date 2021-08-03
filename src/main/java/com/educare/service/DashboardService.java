@@ -3,6 +3,7 @@ package com.educare.service;
 import java.util.List;
 
 import com.educare.model.Course;
+import com.educare.model.CourseDetails;
 import com.educare.model.Enquiry;
 import com.educare.model.Playlist;
 import com.educare.model.Standard;
@@ -22,5 +23,9 @@ public interface DashboardService {
 	List<Course> purchaseCourse(StudentCourseMap scm);
 	
 	StudentCourseMap checkForPurchaseStatus(StudentCourseMap scm);
+	
+	List<CourseDetails> fetchCourseDetails(int courseId);
+	
+	List<Course> getAllCoursesForShowcase(Course c);
 
 }

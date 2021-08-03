@@ -12,5 +12,6 @@ import com.educare.model.Playlist;
 public interface CourseRepo extends JpaRepository<Course, Integer> {
 
 	List<Course> findAllByCourseStdId(int stdYear);
-		
+	
+	List<Course> findAllByCourseType(String courseType);
 }
