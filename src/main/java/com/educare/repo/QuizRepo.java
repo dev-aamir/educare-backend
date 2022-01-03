@@ -12,4 +12,6 @@ import com.educare.model.QuizQuestions;
 public interface QuizRepo extends JpaRepository<Quiz, Integer> {
 
 	List<Quiz> findByQuizStandard(int std);
+
+	List<Quiz> findByQuizSubject(String message);
 }

@@ -113,6 +113,11 @@ public class StudentServiceImpl implements StudentService {
 				sessionRepo.save(sd);
 				
 				response.setSessionKey("HE"+response.getStudentId()+"A"+randomInt);
+				
+				if(response.getStudentEmail().contains("adminhayat.com")) {
+					response.setAdmin(true);
+				}
+				
 				return response;
 			}
 		}
@@ -149,6 +154,36 @@ public class StudentServiceImpl implements StudentService {
 			//Has to be done something for this;
 		}
 		
+	}
+
+	@Override
+	public void globalLogout(Student s) {
+		Student response =  studentRepo.findByStudentUsernameAndStudentPassword(
+				s.getStudentUsername(), s.getStudentPassword());
+		
+		List<SessionDumper> sessionList = sessionRepo.findBySessionUserId(response.getStudentId());
+		
+		if(!sessionList.isEmpty()) {
+			for(SessionDumper sd : sessionList) {
+				if(sd.isSessionStatus() == true) {
+					sd.setSessionStatus(false);
+					sessionRepo.save(sd);
+				}
+			}
+		}
+		
+	}
+
+	@Override
+	public String getCurrentActiveSessionKey(Student s) {
+		
+		SessionDumper sd = sessionRepo.findBySessionUserIdAndSessionStatus(s.getStudentId(), true);
+		
+		if(sd != null) {
+			return sd.getSessionKey();
+		}
+		
+		return null;
 	}
 
 }

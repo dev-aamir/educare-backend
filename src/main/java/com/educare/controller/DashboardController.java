@@ -15,6 +15,7 @@ import com.educare.model.Course;
 import com.educare.model.CourseDetails;
 import com.educare.model.Enquiry;
 import com.educare.model.Mail;
+import com.educare.model.Notes;
 import com.educare.model.Playlist;
 import com.educare.model.Standard;
 import com.educare.model.Student;
@@ -41,7 +42,6 @@ public class DashboardController {
 	@Autowired
 	MailRepo mailRepo;
 	
-	@CrossOrigin(origins = "*")
 	@PostMapping("/courses")
 	public ResponseEntity<List<Course>> getCoursesByStdYear(@RequestBody Standard s){
 		
@@ -50,7 +50,6 @@ public class DashboardController {
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "*")
 	@PostMapping("/playlist")
 	public ResponseEntity<List<Playlist>> getPlaylistByCourse(@RequestBody Course c){
 		
@@ -59,7 +58,6 @@ public class DashboardController {
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "*")
 	@PostMapping("/studentDash")
 	public ResponseEntity<List<Course>> getStudentDashboard(@RequestBody Student s){
 		
@@ -68,7 +66,6 @@ public class DashboardController {
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "*")
 	@PostMapping("/purchaseCourse")
 	public ResponseEntity<List<Course>> purchaseCourse(@RequestBody StudentCourseMap scm ){
 		
@@ -77,7 +74,6 @@ public class DashboardController {
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "*")
 	@PostMapping("/enquiry")
 	public ResponseEntity<Enquiry> saveEnquiry(@RequestBody Enquiry e){
 		
@@ -90,7 +86,6 @@ public class DashboardController {
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "*")
 	@PostMapping("/purchaseStatus")
 	public ResponseEntity<StudentCourseMap> purchaseStatus(@RequestBody StudentCourseMap scm ){
 		
@@ -99,7 +94,6 @@ public class DashboardController {
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "*")
 	@PostMapping("/courseDetails")
 	public ResponseEntity<List<CourseDetails>> fetchCourseDetails(@RequestBody Course c ){
 		
@@ -108,11 +102,18 @@ public class DashboardController {
 		return new ResponseEntity<>(cdResponse,HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "*")
 	@PostMapping("/showCourses")
 	public ResponseEntity<List<Course>> getCourses(@RequestBody Course c){
 		
 		List<Course> response = dashboardService.getAllCoursesForShowcase(c);
+		
+		return new ResponseEntity<>(response,HttpStatus.OK);
+	}
+	
+	@PostMapping("/getNotes")
+	public ResponseEntity<List<Notes>> getNotes(@RequestBody Course c){
+		
+		List<Notes> response = dashboardService.getAllNotesByCourseId(c.getCourseId());
 		
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.educare.model.Course;
 import com.educare.model.CourseDetails;
 import com.educare.model.Enquiry;
+import com.educare.model.Notes;
 import com.educare.model.Playlist;
 import com.educare.model.Standard;
 import com.educare.model.Student;
@@ -17,6 +18,7 @@ import com.educare.model.StudentCourseMap;
 import com.educare.repo.CourseDetailsRepo;
 import com.educare.repo.CourseRepo;
 import com.educare.repo.EnquiryRepo;
+import com.educare.repo.NotesRepo;
 import com.educare.repo.PlaylistRepo;
 import com.educare.repo.StudentCourseMapRepo;
 import com.educare.repo.StudentRepo;
@@ -46,6 +48,9 @@ public class DashboardServiceImpl implements DashboardService {
 	
 	@Autowired
 	CourseDetailsRepo detailsRepo;
+	
+	@Autowired
+	NotesRepo notesRepo;
 
 	@Override
 	public List<Course> getAllCoursesForDashboard(Standard std) {
@@ -126,5 +131,10 @@ public class DashboardServiceImpl implements DashboardService {
 	public List<Course> getAllCoursesForShowcase(Course c) {
 		String courseType = c.getCourseType();
 		return courseRepo.findAllByCourseType(courseType);
+	}
+
+	@Override
+	public List<Notes> getAllNotesByCourseId(int courseId) {
+		return notesRepo.findAllByCourseId(courseId);
 	}
 }

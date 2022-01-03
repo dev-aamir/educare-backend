@@ -39,6 +39,16 @@ public class QuizController {
 		return new ResponseEntity<>(quizList,HttpStatus.OK);
 	}
 	
+	@PostMapping("/getQuizesBySubject")
+	public ResponseEntity<List<Quiz>> getQuizesBySubject(@RequestBody Student student){
+		
+		LOGGER.info("Get Quizes Service Hit >>>>>>>");
+		
+		List<Quiz> quizList = quizService.getQuizListBySubject(student.getMessage());
+		
+		return new ResponseEntity<>(quizList,HttpStatus.OK);
+	}
+	
 	
 	@PostMapping("/getQuestions")
 	public ResponseEntity<List<QuizQuestions>> getQuizQuestions(@RequestBody Quiz quiz){

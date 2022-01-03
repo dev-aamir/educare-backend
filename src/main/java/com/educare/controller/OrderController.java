@@ -27,9 +27,8 @@ import com.razorpay.RazorpayException;
 
 import lombok.extern.slf4j.Slf4j;
 
-
-@CrossOrigin(origins = "http://hayateducare.in/")
 @Slf4j
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/order")
 public class OrderController {
@@ -46,6 +45,7 @@ public class OrderController {
         this.client = new RazorpayClient(razorpayClientConfig.getKey(), razorpayClientConfig.getSecret());
     }
  
+    @CrossOrigin(origins = "*")
     @PostMapping("/order")
     public ResponseEntity<OrderResponse> createOrder(@RequestBody OrderRequest orderRequest) {
         OrderResponse razorPay = null;
@@ -65,6 +65,7 @@ public class OrderController {
         return ResponseEntity.ok(razorPay);
     }
  
+    @CrossOrigin(origins = "*")
     @PutMapping("/order")
     public ResponseEntity<String> updateOrder(@RequestBody PaymentResponse paymentResponse) {
         String errorMsg = orderService.validateAndUpdateOrder(paymentResponse.getRazorpayOrderId(), paymentResponse.getRazorpayPaymentId(), paymentResponse.getRazorpaySignature(),
@@ -75,6 +76,7 @@ public class OrderController {
         return ResponseEntity.ok("Payment Success");
     }
     
+    @CrossOrigin(origins = "*")
     @PostMapping("/failedPayment")
     public ResponseEntity<PayFailed> payFailed(@RequestBody PayFailed paymentErr) {
     	

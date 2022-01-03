@@ -57,11 +57,11 @@ public class StudentController {
 		return new ResponseEntity<>("logged out",HttpStatus.OK);
 	}
 
-	@GetMapping("/findall")
-	public ResponseEntity<List<Student>> findAllStudents() {
+	@GetMapping("/apiStatus")
+	public ResponseEntity<String> findAllStudents() {
 
-		List<Student> students = studentService.findAll();
-		return new ResponseEntity<>(students, HttpStatus.OK);
+		
+		return new ResponseEntity<>("Hayat Educare APIs Running", HttpStatus.OK);
 	}
 	
 	@PostMapping("/askDoubt")
@@ -76,6 +76,21 @@ public class StudentController {
 		
 		List<DoubtBox> response = studentService.fetchAllDoubts(s);
 		return new ResponseEntity<>(response,HttpStatus.OK);
+	}
+	
+	
+	@PostMapping("/globalLogout")
+	public ResponseEntity<String> globalLogOut(@RequestBody Student s){
+		
+		studentService.globalLogout(s);
+		return new ResponseEntity<>("global logged out",HttpStatus.OK);
+	}
+	
+	@PostMapping("/verifyLogin")
+	public ResponseEntity<String> verifyLogin(@RequestBody Student s){
+		
+		String result = studentService.getCurrentActiveSessionKey(s);
+		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 
 }

@@ -17,4 +17,5 @@ public class EducareApplication extends SpringBootServletInitializer{
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(EducareApplication.class);
     }
+	
 }

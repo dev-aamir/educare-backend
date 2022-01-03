@@ -13,6 +13,8 @@ public interface QuizService {
 	QuizResult checkQuizAnswers(List<QuizQuestions> answersList);
 
 	List<Quiz> getQuizList(int studentStandard);
+
+	List<Quiz> getQuizListBySubject(String message);
 	
 	
 }

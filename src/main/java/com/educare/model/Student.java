@@ -72,4 +72,6 @@ public class Student {
 	@Transient
 	private String message;
 
+	@Transient
+	private boolean admin;
 }

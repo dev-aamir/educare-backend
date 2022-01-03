@@ -85,10 +85,13 @@ public class QuizServiceImpl implements QuizService {
 						
 						if(submittedList.get(j).getAnswerSubmitted() == questionsList.get(i).getAnswer()) {
 							submittedList.get(j).setAnswerCorrect(true);
+							
 							correctCount++;
 						}else {
 							submittedList.get(j).setAnswerCorrect(false);
 						}
+						
+						submittedList.get(j).setAnswer(questionsList.get(i).getAnswer());
 					}
 				}
 			}
@@ -125,6 +128,12 @@ public class QuizServiceImpl implements QuizService {
 		// TODO Auto-generated method stub
 		
 		return quizsRepo.findByQuizStandard(studentStandard);
+	}
+
+	@Override
+	public List<Quiz> getQuizListBySubject(String message) {
+		
+		return quizsRepo.findByQuizSubject(message);
 	}
 	
 	

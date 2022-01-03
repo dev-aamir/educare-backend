@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,5 +47,8 @@ public class Course {
 	
 	@Column(name="c_type")
 	private String courseType;
+	
+	@Transient
+	private String message;
 	
 }

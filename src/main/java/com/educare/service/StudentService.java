@@ -18,4 +18,8 @@ public interface StudentService {
 	List<DoubtBox> fetchAllDoubts(Student s);
 	
 	void logoutStudent(Student s);
+	
+	void globalLogout(Student s);
+	
+	String getCurrentActiveSessionKey(Student s);
 }

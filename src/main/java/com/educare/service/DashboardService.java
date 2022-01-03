@@ -5,6 +5,7 @@ import java.util.List;
 import com.educare.model.Course;
 import com.educare.model.CourseDetails;
 import com.educare.model.Enquiry;
+import com.educare.model.Notes;
 import com.educare.model.Playlist;
 import com.educare.model.Standard;
 import com.educare.model.Student;
@@ -27,5 +28,7 @@ public interface DashboardService {
 	List<CourseDetails> fetchCourseDetails(int courseId);
 	
 	List<Course> getAllCoursesForShowcase(Course c);
+	
+	List<Notes> getAllNotesByCourseId(int courseId);
 
 }
